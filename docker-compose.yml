@@ -1,0 +1,10 @@
+services:
+  class-container:
+    image: arch-cpp-xeus
+    ports:
+      - "8888:8888"
+    volumes:
+      - .:/workspace
+    working_dir: /workspace
+    tty: true
+    stdin_open: true
