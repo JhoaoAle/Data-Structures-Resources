@@ -27,12 +27,12 @@ RUN pacman -Syu --noconfirm ca-certificates curl \
 ENV MAMBA_NO_IPV6=1
 ENV MAMBA_NUM_THREADS=1
 
-# Micromamba install ----
+# Micromamba install 
 RUN curl -L https://micro.mamba.pm/api/micromamba/linux-64/latest \
     | tar -xvj bin/micromamba \
     && mv bin/micromamba /usr/local/bin/micromamba
 
-# ---- create environment ----
+# Create environment 
 RUN micromamba create -y -n class-env \
     -c conda-forge \
     xeus-cling \
