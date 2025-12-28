@@ -43,3 +43,5 @@
 .directory/
 
 directory
+
+*/.ipynb_checkpoints/
