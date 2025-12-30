@@ -71,10 +71,9 @@ int main(){
     printf ("Size of integer is %d bytes \n", (int)sizeof(int));
 
     printf ("Value at address w + 1: %d \n", *(w+1));
-    return 0;
+    
 
     // Seventh block. Pointer types
-
     /*
         Pointers are strongly typed. Which means a pointer to a variable has to be
         the same data type of the variable it is pointing to.
@@ -101,8 +100,29 @@ int main(){
         Dereferencing (Printing *p, the value) -> Compiler looks at 4 bytes starting at 0x...200
 
         What would happen if p was a char*?
+        It would only look at one byte
     */
+    int a0 = 1025;
+    int *p0 = &a0;
+    printf ("Size of integer is %d bytes \n", (int)sizeof(int));
+    printf ("Value %d at address %p (%d casted as int) \n", *p0, p0, p0);
+    printf ("Value %d at address %p (%d casted as int) \n", *(p0+1), p0+1, p0+1);
+    char *p1;
+    //p1 = p0; // Error due to different types
+    p1 = (char*)p0; // Error due to different types
+    printf ("Size of char is %d bytes \n", (int)sizeof(char));
+
+    //1025 = 00000000 00000000 00000100 00000001 
+    printf ("Value %d at address %p (%d casted as int) \n", *p1, p1, p1);
+    printf ("Value %d at address %p (%d casted as int) \n", *(p1+1), p1+1, p1+1);
 
 
+    //Eight block. Generic pointer
+    void *pvoid;
+    pvoid = p0;
+    // printf ("Value %d at address %p (%d casted as int) \n", *pvoid, pvoid, pvoid ); // It won't allow to dereference
 
+     
+
+    return 0;
 }
