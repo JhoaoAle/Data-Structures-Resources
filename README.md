@@ -43,6 +43,14 @@ Or
 gcc pointers.c -o pointers && ./pointers
 ```
 
+Note: Whenever math.h is used, this library needs to be linked in when building the executable. In the case of the container, where Linux is used, this can be done with the ```-lm``` linker:
+
+```bash
+gcc triangular_numbers.c -o triang -lm && ./triang
+```
+
+
+
 Alternatively, a user can start a jupyter lab instance through the command:
 
 ```bash
