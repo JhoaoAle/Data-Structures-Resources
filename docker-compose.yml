@@ -1,5 +1,8 @@
 services:
   class-container:
+    build:
+      context: .
+      dockerfile: Dockerfile
     image: arch-cpp-xeus
     ports:
       - "8888:8888"
