@@ -1,11 +1,46 @@
+#include <stdint.h>
 #include <stdio.h>
-#include <stdlib.h>
+#include <stdint.h>
 #include <math.h>
 
 #define MAX_MEMO 96
 
 // Memoization cache
 long long memo[MAX_MEMO];
+
+typedef struct {
+    uint64_t a, b, c, d;
+} Matrix;
+
+Matrix multiply(Matrix x, Matrix y) {
+    Matrix r;
+    r.a = x.a * y.a + x.b * y.c;
+    r.b = x.a * y.b + x.b * y.d;
+    r.c = x.c * y.a + x.d * y.c;
+    r.d = x.c * y.b + x.d * y.d;
+    return r;
+}
+
+Matrix matrix_power(Matrix base, uint64_t n) {
+    Matrix result = {1, 0, 0, 1}; // identity matrix
+
+    while (n > 0) {
+        if (n & 1)
+            result = multiply(result, base);
+        base = multiply(base, base);
+        n >>= 1;
+    }
+    return result;
+}
+
+uint64_t fibonacci_matrix(uint64_t n) {
+    if (n == 0) return 0;
+    if (n == 1) return 1;
+
+    Matrix fib = {1, 1, 1, 0};
+    Matrix r = matrix_power(fib, n - 1);
+    return r.a; // F(n)
+}
 
 void init_memo(void) {
     for (int i = 0; i < MAX_MEMO; i++)
@@ -52,6 +87,7 @@ int input();
 int main(){
     init_memo();
     int choice, n;
+    uint64_t m;
     FILE *fp = fopen("input_fibonacci.txt", "r");
 
     while(1){
@@ -60,6 +96,7 @@ int main(){
         printf("2. Memoization Based Approach\n");
         printf("3. Formula based approach\n");
         printf("4. Recurrent approach\n");
+        printf("5. Matrix-power based approach\n");
         printf("0. Exit\n\n");
 
         choice = input();
@@ -95,6 +132,14 @@ int main(){
                 printf("\n Calculating nth Fibonacci using a Recurrent Approach \n");
                 while (fscanf(fp, "%d", &n) == 1 && (n > 0)) {
                     printf("%llu \n", fibonacci_recurrent(n));
+                }
+                break;
+            }
+            case 5: {
+                rewind(fp);
+                printf("\n Calculating nth Fibonacci using a Matrix-Powers based Approach \n");
+                while (fscanf(fp, "%llu", &m) == 1 && (m > 0)) {
+                    printf("%llu \n", fibonacci_recurrent(m));
                 }
                 break;
             }
