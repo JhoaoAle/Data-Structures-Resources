@@ -45,3 +45,8 @@
 directory
 
 */.ipynb_checkpoints/
+
+*.o
+*.out
+*.exe
+a.out
