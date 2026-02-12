@@ -49,6 +49,13 @@ Note: Whenever math.h is used, this library needs to be linked in when building 
 gcc triangular_numbers.c -o triang -lm && ./triang
 ```
 
+In order to measure the computation time of a program, one can use the command:
+
+```bash
+time ./a.out
+```
+
+
 
 
 Alternatively, a user can start a jupyter lab instance through the command:
