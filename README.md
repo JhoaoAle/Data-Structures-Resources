@@ -55,6 +55,21 @@ In order to measure the computation time of a program, one can use the command:
 time ./a.out
 ```
 
+An example of how to use the timer function
+```bash
+time ./a.out
+```
+
+Alternatively, this timer function can be called along with the code execution
+
+```bash
+gcc prime_numbers.c -o prime.out -lm && time ./prime.out
+```
+In the case of the aforementioned code, the print statements depends of a DEBUG "flag", which can be included using the following:
+
+```bash
+gcc prime_numbers.c -D DEBUG -o prime.out -lm && time ./prime.out
+```
 
 
 
