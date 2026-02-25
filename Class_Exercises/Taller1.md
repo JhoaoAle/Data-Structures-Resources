@@ -91,4 +91,4 @@ Para cada caso de prueba, el programa debe generar una sola línea de salida, co
 1
 ```
 
-**Restricción:** El tiempo de ejecución para cualquier caso de prueba no debe exceder 1.000 segundo.
+**Restricción:** El tiempo de ejecución para cualquier caso de prueba no debe exceder 1000 ms.
