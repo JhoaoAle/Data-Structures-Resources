@@ -98,23 +98,70 @@ void print_dll_backwards(DLL* list){
 }
 
 
+bool search_key(DLL* list, int key)
+{
+    Node *curr = list -> head;
 
+    while (curr != NULL)
+    {
+        if (curr->data == key) return true;
+        curr = curr->next;
+    }
 
+    return false;
+}
 
+void delete_head(DLL* list)
+{
+    if (list->head == NULL) return;
 
+    Node* temp = list->head;
+    list->head = temp->next;
 
+    if (list->head != NULL) list->head->prev = NULL;
+    else list->tail = NULL;
 
+    free(temp);
+}
 
+void delete_tail(DLL* list)
+{
+    if (list->tail == NULL) return;
 
+    Node* temp = list->tail;
 
+    if (list->head == list->tail) list->head = list->tail = NULL;
+    else {
+        list->tail = temp->prev;
+        list->tail->next = NULL;
+    }
+    free(temp);
+}
 
+void delete_at_n(DLL* list, int position)
+{
+    if (list->head == NULL) return;
 
+    if (position == 0){
+        delete_head(list);
+        return;
+    }
 
+    Node* curr = list->head;
+    for (int i = 0; i < position - 1 && curr->next != NULL; i++) curr = curr->next;
 
+    if (curr->next == NULL) return;
 
-
-
-
+    Node* temp = curr->next;
+    
+    if (temp == list->tail){
+        delete_tail(list);
+        return;
+    }
+    curr->next = temp->next;
+    temp->next->prev = curr;
+    free(temp);
+}
 
 int main(){
     DLL *my_list = create_list();
@@ -128,9 +175,6 @@ int main(){
 
     print_dll(my_list);
     print_dll_backwards(my_list);
-
-
-
 
     return 0;
 }
