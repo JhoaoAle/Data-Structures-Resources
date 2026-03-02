@@ -1,226 +1,136 @@
-// C Program to Implement Doubly Linked List
 #include <stdio.h>
 #include <stdlib.h>
+#include <stdbool.h>
 
-// defining a node
 typedef struct Node {
-    int data;
     struct Node* next;
+    int data;
     struct Node* prev;
 } Node;
 
-typedef struct DoublyLinkedList {
-    struct Node* head;
-    struct Node* tail;
-} DLL;
-
-// Function to create a new node with given value as data
-Node* createNode(int data)
-{
-    Node* newNode = (Node*)malloc(sizeof(Node));
-    newNode->data = data;
-    newNode->next = NULL;
-    newNode->prev = NULL;
-    return newNode;
+Node *create_node(int value){
+    Node *new_node = (Node*)malloc(sizeof(Node));
+    new_node->data = value;
+    new_node->prev = new_node->next = NULL;
+    return new_node;
 }
 
-DLL* createList(){
-    DLL* list = (DLL*)malloc(sizeof(DLL));
-    list->head = list->tail = NULL;
-    return list;
+typedef struct DLL{
+    Node *head;
+    Node *tail;
+}DLL;
+
+DLL *create_list(){
+    DLL *my_list = (DLL*)malloc(sizeof(DLL));
+    my_list->head = my_list->tail = NULL;
+    return my_list;
 }
 
-// Function to insert a node at the beginning
-void insertAtBeginning(DLL* list, int data)
-{
-    // creating new node
-    Node* newNode = createNode(data);
-
-    // check if DLL is empty
-    if (list->head == NULL) {
-        list->head = newNode;
-        list->tail = newNode;
-        return;
+void insert_at_head(DLL* list, int value){
+    Node* new_node = create_node(value);
+    if(list->head == NULL){
+        list->head = list->tail = new_node;
+    } else{
+        new_node->next = list->head;
+        list->head->prev = new_node;
+        list->head = new_node;
     }
-    newNode->next = list->head;
-    list->head->prev = newNode;
-    list->head = newNode;
 }
 
-// Function to insert a node at the end
-void insertAtEnd(DLL* list, int data)
-{
-    // creating new node
-    Node* newNode = createNode(data);
-
-    // check if DLL is empty
-    if (list->head == NULL) {
-        list->head = list->tail = newNode;
-        return;
+void insert_at_tail(DLL* list, int value){
+    Node* new_node = create_node(value);
+    if(list->tail == NULL){
+        list->head = list->tail = new_node;
+    } else{
+        new_node->prev = list->tail;
+        list->tail->next = new_node;
+        list->tail = new_node;
     }
-
-    list->tail->next = newNode;
-    newNode->prev = list->tail;
-    list->tail = newNode;
 }
 
-// Function to insert a node at a specified position
-/*void insertAtPosition(Node** head, int data, int position)
-{
-    if (position < 1) {
-        printf("Position should be >= 1.\n");
+void insert_at_n(DLL* list, int n, int value){
+    if (n==0){
+        insert_at_head(list, value);
         return;
     }
+    if (list->head == NULL){
+        printf("Out of bounds \n");
+        return;
+    }
+    Node* new_node = create_node(value);
+    Node* current = list->head;
+    int tracker = 0;
+    while(tracker < n-1){
+        if (current->next == NULL){
+            printf("Out of bounds");
+            free(new_node);
+            return;
+        }
+        current = current->next;
+        tracker ++;
+    }
+    new_node->next=current->next;
+    current->next = new_node;
+    new_node->prev = current;
+    if (new_node->next != NULL){
+        new_node->next->prev = new_node;
+    } else list->tail = new_node;
+}
 
-    // if we are inserting at head
-    if (position == 1) {
-        insertAtBeginning(head, data);
-        return;
-    }
-    Node* newNode = createNode(data);
-    Node* temp = *head;
-    for (int i = 1; temp != NULL && i < position - 1; i++) {
+void print_dll(DLL* list){
+    Node *temp = list->head;
+    printf("NULL <-> ");
+    while (temp != NULL){
+        printf("%d <-> ", temp->data);
         temp = temp->next;
     }
-    if (temp == NULL) {
-        printf(
-            "Position greater than the number of nodes.\n");
-        return;
-    }
-    newNode->next = temp->next;
-    newNode->prev = temp;
-    if (temp->next != NULL) {
-        temp->next->prev = newNode;
-    }
-    temp->next = newNode;
-}
-*/
-// Function to delete a node from the beginning
-void deleteAtBeginning(DLL* list)
-{
-    // checking if the DLL is empty
-    if (list->head == NULL) {
-        printf("The list is already empty.\n");
-        return;
-    }
-    Node* temp = list->head;
-    list->head = list->head->next;
-    if (list->head != NULL) {
-        (list->head)->prev = NULL;
-    }
-    if (list->head->next == NULL) list->tail = list->head; 
-    free(temp);
-}
-/*
-// Function to delete a no if (list->head != NULL)de from the end
-void deleteAtEnd(Node** head)
-{
-    // checking if DLL is empty
-    if (*head == NULL) {
-        printf("The list is already empty.\n");
-        return;
-    }
-
-    Node* temp = *head;
-    if (temp->next == NULL) {
-        *head = NULL;
-        free(temp);
-        return;
-    }
-    while (temp->next != NULL) {
-        temp = temp->next;
-    }
-    temp->prev->next = NULL;
-    free(temp);
-}
-*/
-/*
-// Function to delete a node from a specified position
-void deleteAtPosition(Node** head, int position)
-{
-    if (*head == NULL) {
-        printf("The list is already empty.\n");
-        return;
-    }
-    Node* temp = *head;
-    if (position == 1) {
-        deleteAtBeginning(head);
-        return;
-    }
-    for (int i = 1; temp != NULL && i < position; i++) {
-        temp = temp->next;
-    }
-    if (temp == NULL) {
-        printf("Position is greater than the number of "
-               "nodes.\n");
-        return;
-    }
-    if (temp->next != NULL) {
-        temp->next->prev = temp->prev;
-    }
-    if (temp->prev != NULL) {
-        temp->prev->next = temp->next;
-    }
-    free(temp);
-}
-*/
-// Function to print the list in forward direction
-void printListForward(DLL* list)
-{
-    Node* temp = list->head;
-    printf("Forward List: ");
-    while (temp != NULL) {
-        printf("%d ", temp->data);
-        temp = temp->next;
-    }
-    printf("\n");
+    printf("NULL \n");
 }
 
-// Function to print the list in reverse direction
-void printListReverse(DLL* list)
-{
-    Node* temp = list->tail;
-    printf("Reverse List: ");
-    while (temp != NULL) {
-        printf("%d ", temp->data);
+void print_dll_backwards(DLL* list){
+    Node *temp = list->tail;
+    printf("NULL <-> ");
+    while (temp != NULL){
+        printf("%d <-> ", temp->data);
         temp = temp->prev;
     }
-    printf("\n");
+    printf("NULL \n");
 }
 
-int main()
-{
-    Node* head = NULL;
-    DLL* my_list = createList();
-    insertAtBeginning(my_list, 5);
-    insertAtBeginning(my_list, 10);
-    insertAtEnd(my_list, 20);
 
-    printf("After Insertions:\n");
-    printListForward(my_list);
-    printListReverse(my_list);
 
-    deleteAtBeginning(my_list);
-    printf("After Insertions:\n");
-    printListForward(my_list);
-    printListReverse(my_list);
-/*
-    // Demonstrating various operations
-    insertAtEnd(&head, 10);
-    insertAtEnd(&head, 20);
-    insertAtBeginning(&head, 5);
-    insertAtPosition(&head, 15, 2); // List: 5 15 10 20
 
-    printf("After Insertions:\n");
-    printListForward(head);
-    printListReverse(head);
 
-    deleteAtBeginning(&head); // List: 15 10 20
-    deleteAtEnd(&head); // List: 15 10
-    deleteAtPosition(&head, 2); // List: 15
 
-    printf("After Deletions:\n");
-    printListForward(head);
-*/
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+int main(){
+    DLL *my_list = create_list();
+    insert_at_head(my_list,7);
+    insert_at_head(my_list,9);
+
+    insert_at_tail(my_list, 20);
+
+    insert_at_n(my_list,1,8);
+    insert_at_n(my_list,4,42);
+
+    print_dll(my_list);
+    print_dll_backwards(my_list);
+
+
+
+
     return 0;
 }
