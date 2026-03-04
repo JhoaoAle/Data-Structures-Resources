@@ -143,10 +143,6 @@ void display_all(TriageSystem* system){
 }
 
 
-
-
-
-
 int main(){
     TriageSystem* system = create_triage();
 
