@@ -176,5 +176,10 @@ int main(){
     print_dll(my_list);
     print_dll_backwards(my_list);
 
+    delete_at_n(my_list,4);
+
+    print_dll(my_list);
+    print_dll_backwards(my_list);
+
     return 0;
 }
