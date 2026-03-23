@@ -16,17 +16,19 @@
 \maketitle
 \thispagestyle{empty}
 
-\textbf{1. } Durante la lectura de "La Casa de los Espíritus" de Isabel Allende, alguien sumó todos los números de página comenzando desde la página 1. Al terminar la lectura, obtuvo un resultado de 103000, pero se dió cuenta de que se había olvidado de un número. ¿Cuál número de página fue olvidado? y ¿cuántas páginas tiene el libro?
+\textbf{1. } Durante la lectura de "La casa de los espíritus" de Isabel Allende, alguien sumó todos los números de página desde la página 1 hasta la última página del libro. Al terminar la lectura, obtuvo un resultado de 103000, pero se dio cuenta de que había omitido un número ¿Qué número de página fue olvidado y cuántas páginas en total tiene el libro?
 
 A partir de esta idea, el problema que debe resolver es el siguiente:
-Dado un entero positivo s ($1 <= s <= 10^8$), representando el resultado obtenido, halle el número de la página olvidada y el número total de páginas en el libro.
+Dado un entero positivo s ($1 \leq s \leq 10^8$) que representa el resultado obtenido, halle el número de la página faltante y el total de páginas del libro.
 
 
-\textbf{Entrada }
-La entrada puede contener varios casos de prueba, cada caso se presenta en una sola línea y contiene un entero positivo s. La entrada termina con un caso de prueba en el cual s es 0, este caso no debe ser procesado.
+\textbf{Entrada}
 
-\textbf{Salida }
-Para cada caso de prueba, el programa debe imprimir dos enteros positivos denotando el número de la página faltante así como el número total de páginas en el libro. Cada prueba válida debe generar sólo una línea de salida. Como restricción, la ejecución del código con todos los casos de prueba listados en la siguiente sección, no puede exceder 1.2 segundos.
+La entrada puede contener varios casos de prueba. Cada caso se presenta en una sola línea y contiene un entero positivo s. La entrada termina con un caso de prueba en el cual s es 0; este caso no debe ser procesado.
+
+\textbf{Salida}
+
+Para cada caso de prueba, el programa debe imprimir dos enteros positivos denotando el número de la página faltante así como el número total de páginas en el libro. Cada prueba válida debe generar solo una línea de salida. Como restricción, la ejecución del código con todos los casos de prueba listados en la siguiente sección no puede exceder 1.2 segundos. \newline
 
 \textbf{Entrada de prueba }
 
@@ -48,7 +50,7 @@ Para cada caso de prueba, el programa debe imprimir dos enteros positivos denota
 
 49999775
 
-0
+0 \newline
 
 \textbf{Salida de prueba }
 
@@ -68,14 +70,17 @@ Para cada caso de prueba, el programa debe imprimir dos enteros positivos denota
 
 523 1000
 
-5225 10000
+5225 10000 \newline
 
 
 
-\textbf{2. } https://www.hackerrank.com/challenges/poisonous-plants/problem
+\textbf{2. } Para este ejercicio, debe cargar una solución reconocida como correcta en la plataforma Hackerrank, en lenguaje C o C++ para el siguiente problema: 
+
+https://www.hackerrank.com/challenges/poisonous-plants/problem \newline
 
 
-\textbf{3. } Se dice que una lista enlazada contiene un ciclo si un nodo es visitado más de una vez mientras se recorre la lista. Por ejemplo, cosidere la siguiente lista donde hay un ciclo formado:
+\textbf{3. } Se dice que una lista enlazada contiene un ciclo si un nodo es visitado más de una vez mientras se recorre la lista. Por ejemplo, considere la siguiente lista, en la que se forma un ciclo: \newline
+
 
 \begin{tikzpicture}[
     node distance=2cm,
@@ -96,17 +101,15 @@ Para cada caso de prueba, el programa debe imprimir dos enteros positivos denota
 \draw[arrow] (n4) -- (n5);
 
 \draw[arrow, bend right=40] (n5) to (n3);
-\end{tikzpicture}
+\end{tikzpicture} \newline
 
-Debe definir la función de tipo booleano \verb|has_cycle| que retorne \verb|true| en el caso de que reciba una lista que contiene al menos un ciclo y retornar \verb|false| en caso de que la lista no contenga ciclos.
+Debe definir una función booleana \verb|has_cycle| que retorne \verb|true| si la lista contiene al menos un ciclo y \verb|false| en caso contrario
 
-\verb|has_cycle| recibe como parametro un puntero al nodo cabeza de una lista enlazada, la cual puede contener entre 1 y 100 elementos.
+\verb|has_cycle| recibe como parámetro un puntero al nodo cabeza de una lista enlazada, la cual puede contener entre 1 y 100 elementos.
 
-Para la prueba de este enunciado se generarán 10 listas enlazadas aleatorias para corroborar el correcto funcionamiento del código.
+Para probar este enunciado, se generarán 10 listas enlazadas aleatorias para corroborar el correcto funcionamiento del código.
 
-Tiempo máximo de ejecución: 2 segundos
-
-
+Como restricción, la ejecución del código con todos los casos de prueba no puede exceder 5 segundos.
 
 
-\end{document}
+\end{document}unified with a term that contains it; this is the so-
