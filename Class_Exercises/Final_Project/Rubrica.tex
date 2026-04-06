@@ -1,0 +1,69 @@
+\documentclass{article}
+
+\usepackage{xcolor}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{enumerate}
+\usepackage{microtype}
+\usepackage[hyphens]{url}
+\usepackage{hyperref}
+\usepackage[top=1.5cm]{geometry} % Page margins
+
+\title{Rúbrica Proyecto Final - Compresión de archivos de texto}
+\author{Estructuras de Datos \\ Facultad de Ingenierías - Universidad Tecnológica de Pereira \\ Ingeniería de Sistemas y Computación}
+\date{}
+
+\begin{document}
+\maketitle
+\thispagestyle{empty}
+
+\section{Requerimientos}
+\begin{itemize}
+    \item Implementar el algoritmo de \textbf{Huffman Coding} para la compresión de un archivo con extensión .txt a un archivo con extensión .bin y extracción (descompresión) de datos textuales a partir de un archivo con formato .bin.
+    \item Implementar el algoritmo de compresión \textbf{LZ77} para la compresión de un archivo con extensión .txt a un archivo con extensión .bin y extracción (descompresión) correspondiente.
+    \item Implementar un sistema integrado que combine ambos algoritmos de manera secuencial . Es decir, dado un archivo de texto:
+    \begin{itemize}
+        \item Aplicar inicialmente el algoritmo LZ77.
+        \item Posteriormente, aplicar Huffman Coding sobre el resultado.
+        \item Permitir la extracción de un archivo comprimido que haya sido producido a partir de este método
+    \end{itemize}
+    \item Para cada uno de los numerales anteriores se debe garantizar la reconstrucción \textbf{sin pérdidas (lossless)} de la información original al extraer.
+    \item Implementar funcionalidades para evaluar el desempeño de cada uno de los anteriores numerales, considerando los siguientes criterios:
+    \begin{itemize}
+        \item Tasa de compresión.
+        \item Tiempo de ejecución.
+    \end{itemize}
+    \item Elaboración de un reporte de resultados que incluya los resultados recolectados en el numeral anterior así como sus conclusiones con relación a estos y al proceso de desarrollo.
+    \item El proyecto debe incluir una \textbf{interfaz basada en terminal} desde la cual permita:
+    \begin{itemize}
+        \item Elegir la tarea de compresión/extracción a ejecutar (Compresión/Extracción).
+        \item Seleccionar el archivo sobre el cual se va a realizar el proceso.
+    \end{itemize}
+    \item El proyecto debe ser presentado y sustentado de manera grupal durante la última semana de clase.
+    \item La implementación debe realizarse en lenguaje C/C++.
+\end{itemize}
+
+
+\textbf{Nota: NO} se requiere que se maneje persistencia entre ejecuciones del programa; los procesos de compresión y extracción de archivo se van a realizar en una sola instancia de ejecución.
+
+\section{Bonus} 
+\begin{itemize}
+    \item Implementación del algoritmo \textbf{LZMA} (Lempel-Ziv-Markov chain algorithm), incorporando el uso de \textbf{cadenas de Markov}, como en el caso de uso de 7Z. Se valorará la integración con los requerimientos anteriores. \textbf{(+2.5)}.
+    \item La implementación de herramientas adicionales que demuestren creatividad y entendimiento del problema y alcance del proyecto, así como mejoras al mismo serán consideradas como bonificación proporcionalmente.
+\end{itemize}
+\section{Lecturas recomendadas} 
+\subsection{Huffman Coding}
+\begin{itemize}
+    \item Moffat, A. (2019). Huffman coding. ACM Computing Surveys (CSUR), 52(4), 1-35.
+    \item \url{https://www.w3schools.com/dsa/dsa_ref_huffman_coding.php}
+\end{itemize}
+\subsection{LZ77}
+\begin{itemize}
+    \item \url{https://learn.microsoft.com/en-us/openspecs/windows_protocols/ms-wusp/fb98aa28-5cd7-407f-8869-a6cef1ff1ccb}
+\end{itemize}
+\subsection{LZMA}
+\begin{itemize}
+    \item \url{https://www.7-zip.org/sdk.html}
+\end{itemize}
+
+\end{document}
