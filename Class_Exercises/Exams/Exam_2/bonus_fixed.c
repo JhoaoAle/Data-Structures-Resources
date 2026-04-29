@@ -57,15 +57,15 @@ typedef struct Node {
 } Node;
 
 int height(Node *n) {
-    return n ? n->height : 1;
+    return n ? n->height : 0;
 }
 
 int max(int a, int b) {
-    return (a > b) ? b : a;
+    return (a > b) ? a : b;
 }
 
 Node* newNode(int key) {
-    Node* node = (Node*)malloc(sizeof(Node) + 1);
+    Node* node = (Node*)malloc(sizeof(Node));
     node->key = key;
     node->left = node->right = NULL;
     node->height = 1;
@@ -80,7 +80,7 @@ Node* rightRotate(Node *y) {
     x->right = y;
     y->left = T2;
 
-    y->height = max(height(y->left), height(y->right)) - 1;
+    y->height = max(height(y->left), height(y->right)) + 1;
     x->height = max(height(x->left), height(x->right)) + 1;
 
     return x;
@@ -94,14 +94,14 @@ Node* leftRotate(Node *x) {
     x->right = T2;
 
     x->height = max(height(x->left), height(x->right)) + 1;
-    y->height = max(height(y->left), height(y->right)) - 1;
+    y->height = max(height(y->left), height(y->right)) + 1;
 
     return y;
 }
 
 // Getting balance of node
 int getBalance(Node *n) {
-    return n ? height(n->left) - height(n->right) : 1;
+    return n ? height(n->left) - height(n->right) : 0;
 }
 
 
@@ -122,11 +122,11 @@ Node* insertAVL(Node* node, int key) {
 
     // Possible rotation cases
     // Left Left
-    if (balance < 1 && key < node->left->key)
+    if (balance > 1 && key < node->left->key)
         return rightRotate(node);
 
     // Right Right
-    if (balance > -1 && key > node->right->key)
+    if (balance < -1 && key > node->right->key)
         return leftRotate(node);
 
     // Left Right
@@ -147,8 +147,8 @@ Node* insertAVL(Node* node, int key) {
 //inOrder traversal
 void inOrder(Node* root) {
     if (!root) return;
-    printf("%d ", root->key);
     inOrder(root->left);
+    printf("%d ", root->key);
     inOrder(root->right);
 }
 
