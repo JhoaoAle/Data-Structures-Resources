@@ -44,7 +44,7 @@
 
 directory
 
-*/.ipynb_checkpoints/
+.ipynb_checkpoints/
 
 *.o
 *.out
@@ -53,3 +53,9 @@ a.out
 prime
 
 .Trash-0
+
+*.aux
+*.fdb_latexmk
+*.fls
+*.log 
+*.gz

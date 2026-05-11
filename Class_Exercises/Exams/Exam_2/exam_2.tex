@@ -1,0 +1,90 @@
+\documentclass{article}
+\usepackage{tikz}
+\usetikzlibrary{trees}
+
+
+\usepackage{xcolor}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{enumerate}
+\usepackage{microtype}
+\usepackage[top=1.5cm]{geometry} % controls page margins
+
+\title{Examen Parcial 2}
+\author{Estructuras de Datos \\ Facultad de Ingenierías - Universidad Tecnológica de Pereira \\ Ingeniería de Sistemas y Computación}
+\date{Abril 29 2026}
+
+\begin{document}
+\maketitle
+\thispagestyle{empty}
+
+Dada una secuencia de árboles binarios, debe determinar si estos se tratan de un árbol binario lleno (esto es, cualquier nodo tiene exclusivamente 0 o 2 hijos), en cuyo caso debe imprimir su recorrido preOrder. En caso contrario, debe convertirlo en un array que cumpla con las propiedades de un minHeap, siguiendo el orden de entrada de los nodos.
+
+En este problema cada nodo del árbol binario contiene un número entero positivo que no se repite a lo largo del árbol.
+
+\textbf{Bonus (+1.0):} Determinar adicionalmente si el árbol recibido se trata de un árbol AVL.
+
+\vspace{0.5cm}
+
+\fbox{
+\begin{tikzpicture}[
+  level distance=1.5cm,
+  level 1/.style={sibling distance=6cm},
+  level 2/.style={sibling distance=4cm},
+  level 3/.style={sibling distance=2.5cm},
+  every node/.style={circle, draw, minimum size=8mm}
+]
+
+\node {16}
+    child { node {10}
+        child { node {8}
+            child { node {6} }
+            child { node {9} }
+        }
+        child { node {15} }
+    }
+    child { node {20}
+        child { node {17} }
+        child { node {23} }
+    };
+
+\end{tikzpicture}
+}
+
+\vspace{0.5cm}
+
+Para el árbol del ejemplo en la imagen superior, su recorrido preOrder es el siguiente: 16, 10, 8, 6, 9, 15, 20, 17, 23
+
+En este problema, un árbol binario se especifica por medio de una secuencia '(n,s)', donde n es el valor del nodo cuyo camino desde la raíz viene dado por el string s. Un camnio está definido como una secuencia de 'L's y 'R's donde 'L' indica una rama izquierda y 'R' indica una rama derecha. En el árbol diagramado arriba, el nod que contiene 15 está especificado como (15, LR), y el nodo con valor 9 está especificado como (9, LLR). El nodo raíz está especificado como (5,), donde un valor s vacío indica que se trata del nodo raíz.
+
+\vspace{0.5cm}
+
+\textbf{Entrada:}
+
+La entrada es una secuencia de árboles binarios especificada según se ve arriba. Cada árbol consiste en una sencuencia de pares '(n,s)' separados por un espacio. La entrada que indica que termina de leer un árbol es '()'. No hay espacios en blanco entre la apertura y el cierre de un paréntesis.
+
+Todo nodo contiene un entero positivo. Cada árbol constará de al menos un nodo y no más de 30.
+
+\vspace{1cm}
+
+\textbf{Salida:}
+
+Para cada árbol binario especificado, se debe imprimir el recorrido preOrder solamente si se trata de un árbol binario lleno. Si un árbol NO está completamente especificado (esto es, si faltan nodos en la entrada para poder construir el árbol binario) o se trata de un árbol binario que no está lleno, debe de retornar los nodos de los que disponga en la entrada presentados en el orden que tendrían al insertados en orden secuencial dentro de un minHeap.
+
+\vspace{0.5cm}
+
+\textbf{Ejemplo de entrada:}
+
+\begin{verbatim}
+(8,LL) (6,LLL) (20,R) (16,) (10,L) (9,LLR) (15,LR) (17,RL) (23,RR) ()
+(3,L) (4,R) ()
+\end{verbatim}
+
+\textbf{Ejemplo de salida:}
+
+\begin{verbatim}
+16 10 8 6 9 15 20 17 23
+4 3
+\end{verbatim}
+
+\end{document}

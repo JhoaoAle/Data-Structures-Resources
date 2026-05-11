@@ -1,0 +1,84 @@
+\documentclass[twocolumn]{article}
+
+\usepackage{xcolor}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{enumerate}
+\usepackage{microtype}
+\usepackage[top=1.5cm]{geometry} % controls page margins
+
+\title{Examen Parcial 1}
+\author{Estructuras de Datos \\ Facultad de Ingenierías - Universidad Tecnológica de Pereira \\ Ingeniería de Sistemas y Computación}
+\date{Marzo 16 2026}
+
+\begin{document}
+\maketitle
+\thispagestyle{empty}
+
+\textbf{1. (1.0)} En el siguiente ejemplo se propone una función recursiva:
+
+\begin{verbatim}
+Procedimiento Recurse(a, b)
+    Si a mod b = 2 entonces
+        retornar a
+    Si no
+        retornar Recurse(a + b, a - b)
+    FinSi
+FinProcedimiento
+\end{verbatim}
+
+A continuación la versión de este código implementada en lenguaje C:
+
+\begin{verbatim}
+int recurse(int a, int b) {
+    if (a % b == 2) {
+        return a;
+    } else {
+        return recurse(a + b, a - b);
+    }
+}
+\end{verbatim}
+
+
+\textbf{a.} ¿Cuál es el retorno del llamado a función recurse(7, 2)?
+
+\textbf{b.} Analizar la complejidad de esta implementación para su caso promedio en notación O. \\
+
+\textbf{2. (1.5)} Seleccione la respuesta que considere correcta para cada una de las siguientes preguntas:
+
+\textbf{2.1} Suponga que se realiza la operación push con los items A, B, C, D and E,en ese orden, en una pila inicialmente vacía S. Entonces se realiza la operación pop 4 veces sobre S; de manera simultánea, tras cada pop, los elementos son encolados en una cola inicialmente vacía.
+
+Si dos items son entonces desencolados, cuál elemento sería el siguiente en ser desencolado?
+\begin{tabular}{ccccc}
+\textbf{a.} A & \textbf{b.} B & \textbf{c.} C & \textbf{d.} D & \textbf{e.} E
+\end{tabular}\\
+
+\textbf{2.2} Considere una lista doblemente enlazada con 3 nodos. Asimismo, considere que hay dos punteros: n y p, donde n se encuentra apuntando a la cabeza de la lista y p apunta al nodo inmediatamente siguiente. ¿Cuál de las siguientes expresiones NO se refiere al tercer nodo de la lista?
+\begin{tabular}{ll}
+\textbf{a.} p.next & \textbf{b.} n.next.next \\
+\textbf{c.} p.prev.next & \textbf{d.} p.next.prev.next \\ 
+\textbf{e.} n.next.next.prev.next \\ 
+\end{tabular}\\
+
+\textbf{2.3} Suponga que debe mantener un enorme conjunto de datos cuyo contenido es fijo (i.e. sólo es necesario consultar y retornar elementos existentes, per nunca es necesario insertar o elinimar elementos) Aunque la colección de elementos sea larga, puede asumir que es posible incluirla toda en un bloque de memoria. ¿Cuál de las siguientes estructuras de datos es la más eficiente para la tarea?
+
+\begin{tabular}{ll}
+\textbf{a.} Array ordenado & \textbf{b.} Lista enlazada \\
+\textbf{c.} Lista circular enlazada & \textbf{d.} Pilas \\ 
+\multicolumn{2}{l}{\textbf{e.} Todas las anteriores funcionan igual}
+\end{tabular}\\
+
+\textbf{3. (2.5)} Implementar un código el cual determine si una expresión que contiene paréntesis (), corchetes [] y/o llaves {} se encuentra bien balanceada; esto es, que todo símbolo de apertura tenga posteriormente un símbolo de cierre en el orden correcto
+
+Ejemplos:
+
+Ejemplos:
+
+\begin{itemize}
+\item \texttt{\{ [ ( ) ] \}}
+\item \texttt{\{ ( [ ) ] \}}
+\item \texttt{[ ( a + b ) * \{ c / d \} ]}
+\end{itemize}
+
+Para el primer y tercer casos debe retornar 'true' y para el segundo caso debe retornar 'false'.
+\end{document}
