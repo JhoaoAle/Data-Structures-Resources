@@ -1,0 +1,62 @@
+\documentclass[12pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{xcolor}
+
+
+
+\title{Taller: Librería Universal}
+\author{}
+\date{}
+
+\begin{document}
+
+\maketitle
+
+La Librería Universal, una entidad de renombre internacional dedicada a la promoción de
+obras literarias y académicas de alto impacto, se enfrenta al reto de modernizar su sistema
+de catalogación y recomendación. Se desea implementar un sistema digital que no solo
+gestione su extensa colección, sino que también ofrezca a sus socios y al público
+especializado una herramienta de descubrimiento ágil y precisa.
+
+La información que la Librería considera crucial para cada Libro en su acervo es:
+
+\begin{itemize}
+    \item \textbf{Título:} El nombre oficial de la obra.
+    
+    \item \textbf{Autor Principal:} El nombre del escritor o investigadores primarios.
+    
+    \item \textbf{Volumen de Distribución:} Cifra numérica que refleja el alcance del libro (unidades vendidas).
+    
+    \item \textbf{Calificación del Panel de Expertos (Nota de la Crítica):} Una puntuación entera (ej. de 1 a 10) otorgada por un comité evaluador interno, basada en la calidad, originalidad e influencia potencial de la obra.
+    
+    \item \textbf{Disciplina Principal (Especialidad):} El género al que pertenece la obra (ej: ``Misterio'', ``Thriller'', ``Clásico'', ``Ciencia ficción'', ``Fantasía'', ``Clásico'', ``Realismo mágico'', etc.).
+    
+    \item \textbf{Extracto (Comentarios):} Nota relevante seleccionada por el equipo de curaduría.
+\end{itemize}
+
+Se ha puesto especial énfasis en la eficiencia de ciertas operaciones. Además de la
+funcionalidad básica de ``Incorporar Nueva Publicación'' al sistema (la operación ``crear''),
+se deben desarrollar las siguientes herramientas de consulta avanzada:
+
+\begin{enumerate}
+    \item \textbf{``Recomendación Premium por Autor'' (Compra Segura):} Dada la base de datos
+    de publicaciones y el nombre de un Autor Principal, el sistema debe identificar y
+    devolver, de forma inmediata, la publicación de dicho autor que ostente la más alta
+    Calificación del Panel de Expertos. Esta se considera la ``apuesta segura'' o la obra
+    más laureada del autor dentro de la colección.
+    
+    \item \textbf{``Ranking de Influencia por Disciplina'' (Listado):} Dada la base de datos y una
+    Disciplina Principal específica, el sistema debe generar un listado de todas las
+    publicaciones pertenecientes a esa disciplina. Dicho listado debe presentarse
+    ordenado de mayor a menor según su Volumen de Distribución, facilitando así la
+    identificación de las obras más leídas o difundidas.
+\end{enumerate}
+
+Un requisito fundamental es que las operaciones de ``Recomendación Premium por
+Autor'' y ``Ranking de Influencia por Disciplina'' sean excepcionalmente rápidas
+(idealmente, con una complejidad algorítmica constante para su caso promedio, $O(1)$). Esto
+es vital para garantizar una experiencia de usuario fluida y para que el sistema pueda ser
+utilizado en presentaciones en tiempo real o en portales web de alto tráfico sin demoras
+perceptibles.
+\end{document}
